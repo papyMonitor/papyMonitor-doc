@@ -1,7 +1,3 @@
 site_name: papyMonitor
 theme:
-  name: readthedocs
-  highlightjs: true
-  hljs_languages:
-    - yaml
-    
+  name: material
