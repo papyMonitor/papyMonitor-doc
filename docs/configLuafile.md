@@ -6,33 +6,33 @@ There are three main objects in the file:
 
 1) The **Default** object:
 
-    ```Lua
-    cfg:Default({
-        --parameters
-    })
-    ```
+```Lua
+cfg:Default({
+    --parameters
+})
+```
 
-    This object appears only once at the beginning of the file. Inside are the parameters for the communication and the gui layouting.
+This object appears only once at the beginning of the file. Inside are the parameters for the communication and the gui layouting.
 
 2) The **Variable** object:
 
-    ```Lua
-    cfg:Variable({
-        --parameters
-    })
-    ```
+```Lua
+cfg:Variable({
+    --parameters
+})
+```
 
-    This object is used for representing one variable -or several variables in an array- that is reported by the target. The file can have many objects of this kind.
+This object is used for representing one variable -or several variables in an array- that is reported by the target. The file can have many objects of this kind.
 
 3) The **Solid** object:
 
-    ```Lua
-    cfg:Solid({
-        --parameters
-    })
-    ```
+```Lua
+cfg:Solid({
+    --parameters
+})
+```
 
-    This object is used for representing a 3D shape in the 3D view. The file can have many objects of this kind.
+This object is used for representing a 3D shape in the 3D view. The file can have many objects of this kind.
 
 ## Syntax
 
@@ -50,7 +50,7 @@ All the parameters follow the simple syntax:
 
 `Key = Value,` (may have spaces around the `=`)
 
-(notice to comma at the end of the line, this one is optional if the parameter is the last one)
+(notice the comma at the end of the line, this one is optional if the parameter is the last one)
 
 Depending of the Key, the Value can be a string, a boolean (`true` or `false`), a Lua function (see further), a Lua table (again something surrounded by `{ }`) or a simple numerical value.
 

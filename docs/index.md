@@ -1,8 +1,8 @@
 # Welcome to papyMonitor
 
-![main.jpg](main.jpg)
+![main.jpg](main.gif)
 
-***papyMonitor*** is a multiplatform (Windows, Linux, Mac, ...) tool to interact with any embedded system (called after *target*). It can receive/edit/monitor and simulate data and send commands to the target via the serial port. Arduino (all flavors supported), PIC, AVR, ARM, RPI, a computer or whatever is supported provided the target has a serial port
+***papyMonitor*** is a multiplatform (Windows, Linux, Mac, ...) tool to interact with any embedded system (called after *target*). It can receive/edit/monitor/simulate data and send commands to the target via the serial port. Arduino (all flavors supported), PIC, AVR, ARM, RPI, a computer or whatever equiped with a serial port is supported.
 
 The tool provide a multifunction plotter, a 3D display to simulate the attached mechanical systems and a way to load/save variables tagged as parameters. The GUI and the behavior are fully customizable with one User Configuration File (called after *UCF*) based on Lua scripting language.
 
