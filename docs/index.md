@@ -1,23 +1,23 @@
 # Welcome to papyMonitor
 
-papyMonitor-gui is a multiplatform (Windows, Linux, Mac, ...) tool to interactively receive/edit/monitor data and send commands to embedded system with the serial port. The embedded system can be Arduino (all flavors supported), PIC, AVR, ARM, RPI,... or a computer.
+![main.jpg](main.jpg)
 
-The tool provide a multifunction plotter as well a 3D display to simulate real mechanical systems. It is fully customizable with one User Configuration File (UCF) based on Lua scripting language.
+***papyMonitor*** is a multiplatform (Windows, Linux, Mac, ...) tool to interact with any embedded system (called after *target*). It can receive/edit/monitor and simulate data and send commands to the target via the serial port. Arduino (all flavors supported), PIC, AVR, ARM, RPI, a computer or whatever is supported provided the target has a serial port
 
-It is fast, real time (the embedded system is the master) and proudly made with Godot Engine. The development language used is C#
+The tool provide a multifunction plotter, a 3D display to simulate the attached mechanical systems and a way to load/save variables tagged as parameters. The GUI and the behavior are fully customizable with one User Configuration File (called after *UCF*) based on Lua scripting language.
 
-This tool is already used in production but -for sure- still has some bugs to discover. The MAC version has not been tested since we don't have a MAC, so developers are welcome.
+It is fast, real time (the embedded system is the master) and proudly made with Godot Engine.
 
 ## How it works?
 
-* `mkdocs new [dir-name]` - sss Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+The user write the UCF to describe what variables is received from the target and how to deal with. The behavior (what to do with the variables, editing, displaying, ploting, linking with a move on a 3D shape,...) is also described.
 
-## Project layout
+On the target side, a provided small C library (CPP for Arduino) gives the necessary functions for the communication as well as a structure to store the variables (and callbacks if any) to be reported/modified.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+The protocol used over serial port is choosen as plain ASCII text. Each line is terminated with a `'\n'`. It is very simple, the variables are sent one at a time from the target to ***papyMonitor*** (called after *host*) at a regular interval, this interval is choosen by the target. Depending on the variable type, a line has at max 13 chars included the `'\n'`. This protocol was sucessfully tested at 10000 samples/per second at 2MBaud on a Cortex-M4. The code on Godot Engine takes the received lines asynchronously, at the Frame Rate, and process them. Our tests never show a Frame Rate slow down (standard of 75FPS), even with some Lua functions on the UCF and several 3D shapes on the 3D view.
+
+## Documentation
+
+- **papyMonitor GUI** describes the application
+- **User Configuration File (UCF)** describes the format and the structure of the UCF
+- **Target files** describes the library and how to use it
