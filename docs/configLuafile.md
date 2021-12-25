@@ -276,3 +276,4 @@ cfg:Variable({
 On the GUI, it's rendered like this:
 
 ![main.jpg](boolean.jpg)
+
