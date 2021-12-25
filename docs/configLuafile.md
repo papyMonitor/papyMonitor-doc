@@ -1,4 +1,4 @@
-# User Configuration File (UCF)
+# The User Configuration File (UCF)
 
 UCF is in fact a Lua file. It is for sure not necessary to know the Lua language to create or manipulate the file, but respecting the Lua syntax is mandatory. Also, it is a good idea to have an editor with Lua syntax coloration, it helps to see any mistake, especially a missing bracket.
 
@@ -77,13 +77,18 @@ cfg:Default({
     IReportTextConsole =  '>', -- Don't modify this
 
     --Every sampleTimeHW a variable is sent
-    SampleTimeHW= 0.001, -- Must match the one of the target for correct timing display
+    SampleTimeHW= 0.001, -- Must match the one of the target for correct
+                         -- timing display
 
     --- GUI LAYOUTING
-    --- This Key is responsible for the variables displaying. The variables are referenced by their indexes (integer value). A tab (example Tab0) has a name and may contains several columns. The columns are all in the Columns Key.
+    -- This Key is responsible for the variables displaying. The 
+    -- variables are referenced by their indexes (integer value). A tab 
+    -- (example Tab0) has a name and may contains several columns. 
+    -- The columns are all in the Columns Key.
     GroupTabs= {  -- There are two groups of tabs
         {-- group0
-            NoExpandX=true, -- Means strech horizontally the group to its elements, optional, default=false
+            NoExpandX=true, -- Means strech horizontally the group to 
+                            -- its elements, optional, default=false
             Tabs = { -- There are two tabs in the group
                 { -- Tab0
                     TabName="Example 0",
@@ -133,8 +138,10 @@ At first, an example with the mandatory fields is presented here after:
 --------------- 
 cfg:Variable({
     Name="My byte", -- Name that appears in front of the variable
-    Type="B", -- Variable type, here a byte
-    Index=0, -- Variable index in the target structure
+    Type="B",   -- Variable type, here a byte
+    Index=0,    -- Variable index in the target structure variables
+                -- Use also this index in the GroupTabs LAYOUT
+                -- for displaying
 })
 ```
 
@@ -169,13 +176,20 @@ cfg:Variable({
 
     --- Optional Keys
     -- The variable belong to the parameter group "Base parameters"
-    Parameter="Base parameters", -- if Parameter Key ommited, variable has no parameter group 
+    Parameter="Base parameters", -- if Parameter Key ommited, variable
+                                 -- has no parameter group 
     --
-    HideData=false, -- if set to true, the variable isn't displayed, this is mainly used with the "Button" WidgetType (default = false)
-    Scroll=false, -- used mainly if the variable is an array, put a vertical scrolbar on the widget (default=false)
-    WidgetType="SliderH", -- can be "Normal" (default), "SliderH", "SliderV" and "Button"
-    SliderMin = 0, -- mandatory only if WidgetType="SliderH" or "SliderV": Minimum value of the slider
-    SliderMax = 1000, -- mandatory only if WidgetType="SliderH" or "SliderV": Maximum value of the slider
+    HideData=false, -- if set to true, the variable isn't displayed,
+                    -- this is mainly used with the "Button" WidgetType
+                    -- (default = false)
+    Scroll=false,   -- used mainly if the variable is an array, put a 
+                    -- vertical scrolbar on the widget (default=false)
+    WidgetType="SliderH",   -- can be "Normal" (default), "SliderH", 
+                            -- "SliderV" and "Button"
+    SliderMin = 0,      -- mandatory only if WidgetType="SliderH" or
+                        -- "SliderV": Minimum value of the slider
+    SliderMax = 1000,   -- mandatory only if WidgetType="SliderH" or
+                        -- "SliderV": Maximum value of the slider
     Data = {    -- we will see this Key after
         -- parameters
     },
@@ -194,12 +208,17 @@ cfg:Variable({
     --- Optional Keys
     Data = { 
         {   -- all is optional
-            BoolsOnU8=false, -- use only with "B" type (default=false)
-            Value= 0.0, -- a default value, if Key ommited Value = 0
-            CanEdit=true, -- permit to the user to edit the value and send it when he press enter (default=false)
-            CanPlot=true, -- add this variable to the plot list of the plotter
-            Precision=5, -- for "f" type variable, the number of decimal digits to display (default = 3)
-            SingleText = "", -- in case of array of values, the text to display in front of each variable (default = "")
+            BoolsOnU8=false,-- use only with "B" type (default=false)
+            Value= 0.0,     -- a default value, if Key ommited Value = 0
+            CanEdit=true,   -- permit to the user to edit the value and 
+                            -- send it when he press enter (default=false)
+            CanPlot=true,   -- add this variable to the plot list of the
+                            -- plotter
+            Precision=5,    -- for "f" type variable, the number of decimal
+                            -- digits to display (default = 3)
+            SingleText = "",-- in case of array of values, the text to
+                            -- display in front of each variable 
+                            -- (default = "")
         },
     },
 })
@@ -257,11 +276,14 @@ cfg:Variable({
     Index=115,
     Data= {
         { -- Data0
-            BoolsOnU8=true, -- when set, tell to display the byte as 8 booleans (default=false)
+            BoolsOnU8=true, -- when set, tell to display the byte
+                            -- as 8 booleans (default=false)
             --- Optional Key
             BitsTexts = {
-                "simulSquareCH0", "simulSquareCH1", "simulSquareCH2", "simulSquareCH3",
-                "simulSquareCH4", "Not used",  "Not used", "Not used"
+                "simulSquareCH0", "simulSquareCH1", 
+                "simulSquareCH2", "simulSquareCH3",
+                "simulSquareCH4", "Not used",  
+                "Not used", "Not used"
             },
             --- Optional Key
             CanBitsEdits = {
@@ -277,3 +299,100 @@ On the GUI, it's rendered like this:
 
 ![main.jpg](boolean.jpg)
 
+## The **Solid** object
+
+The example below shows three Solid objects, these are used to render any 3D shape in the 3D view
+
+The simplest Solid definition:
+
+```Lua
+---------------
+cfg:Solid({
+    -- Mandatory fields
+    Parent="Root",  -- see after
+    Name="Sol",     -- The name of the Solid
+    Body="arm.glb", -- filename (path relative to the UCF location)
+```
+
+A solid definition with all the Key accepted:
+
+```Lua
+---------------
+cfg:Solid({
+    -- Mandatory fields
+    Parent="Root",  -- The string value "Root" is reserved to the system
+                    -- It tells that this Solid is connected to other Solid
+                    -- It's coordinates are relative to the 3D scene origin
+
+    Name="Sol",     -- The name of the Solid 
+    Body="Cube",    -- Can be "Cube", "Cylinder" or a filename (path 
+                    -- relative to the UCF location)
+                    -- If it's a filename, the extension must be .glb
+                    -- (standart OpenGL Binary)
+    
+    -- Optional fields
+    StartPosition={ 0, 0.5, -0.2 }, -- Offset position in the scene {x,y,z}
+                                    -- default: {0,0,0}
+    StartRotation={ 0, 90, 0 },     -- Offset rotation in the scene {x,y,z}
+                                    -- default: {0,0,0}
+    CubeSize = { 5, 0.1, 10 },  -- Cube dimension if Body="Cube"
+                                -- default: {1,1,1}
+    CylinderTopRadius= 1,       -- Cylinder dimension if Body="Cylinder"
+                                -- default: {1,1,1}
+    CylinderBottomRadius= 1,    -- Cylinder dimension if Body="Cylinder"
+                                -- default: {1,1,1}
+    CylinderHeight= 1,          -- Cylinder dimension if Body="Cylinder"
+                                -- default: {1,1,1}
+    MoveRotationSmooth=true,    -- Enable smooth rotation, default=false
+    MovePositionSmooth=true,    -- Enable smooth translation, default=false
+    Color={ 0.4, 0.3, 0.2 },    -- Color of the shape {red, green, blue} 
+                                -- values are from 0.0 to 1.0
+                                -- default = {1,1,1}
+    Formula =   -- If omitted, no Formula, if present must respect
+                -- this syntax. self is an object given by the system
+                -- for the user to manipulate variables
+        function(self)
+            --
+        end, -- don't forget the comma if there is another key after Formula     
+})
+
+A solid definition with a Formula key:
+
+cfg:Solid({
+    -- Mandatory fields
+    Parent="Base",
+
+    Name="Bras0",
+    Body="bras0.glb",
+    
+    -- Optional fields
+    StartPosition={ 0, 0.5, -0.2 },
+    StartRotation={ 0, 90, 0 },
+    Color={ 0.4, 0.3, 0.3 },
+    MoveRotationSmooth=true,
+    Formula = 
+        function(self)
+            self.R.y = 90 - self:GetVariable(9)
+            -- Here the Solid rotation around the y axis is related
+            -- with the variable value of index 9
+        end,       
+})
+```
+
+## Objects availables for the key Formula
+
+### System variables
+
+`P`: current coordinates of the solid, accessed with `self.P.x`, `self.P.y` and `self.P.z`
+
+`R`: current rotations of the solid, accessed with `self.R.x`, `self.R.y` and `self.R.z`
+
+### System functions
+
+`GetVariable(index)`: access the variable value of index `index`
+
+`GetVariable(index, bitindex)`: access the variable value of index `index` and return the nth `bitindex` bit value as a number (`0` or `1`)
+
+### Lua functions
+
+All Lua functions are available
