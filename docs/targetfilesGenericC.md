@@ -1,6 +1,6 @@
 # The generic C target files
 
-The papyMonitor-microcontroller-generic repository contains two files to include on your project, see installation instruction.
+The **papyMonitor-microcontroller-generic** repository contains two files to include on your project, see installation instruction.
 
 ## How it works
 
@@ -195,4 +195,4 @@ int main( void ) {
 }
 ```
 
-For amore complete example, see the example02 in the examples folder
+For a more complete example, see the example02 in the examples folder

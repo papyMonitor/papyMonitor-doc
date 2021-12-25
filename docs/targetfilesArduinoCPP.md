@@ -1,6 +1,6 @@
 # The Arduino target files
 
-The papyMonitor folder of papyMonitor-arduino repository contains two files to include on your project, see installation instruction.
+The papyMonitor folder of **papyMonitor-arduino** repository contains two files to include on your project, see installation instruction.
 
 ## How it works
 
@@ -167,4 +167,4 @@ cfg:Variable({
 })
 ```
 
-See "The User Configuration File (UCF)"" documentation for more information
+See "The User Configuration File (UCF)" documentation for more information
