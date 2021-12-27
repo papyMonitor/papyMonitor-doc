@@ -1,0 +1,861 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>The User Configuration File (UCF) - papyMonitor</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-user-configuration-file-ucf" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="papyMonitor" class="md-header__button md-logo" aria-label="papyMonitor" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            papyMonitor
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The User Configuration File (UCF)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="papyMonitor" class="md-nav__button md-logo" aria-label="papyMonitor" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    papyMonitor
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to papyMonitor
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          The User Configuration File (UCF)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        The User Configuration File (UCF)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-default-object" class="md-nav__link">
+    The Default object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-variable-object" class="md-nav__link">
+    The Variable object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-solid-object" class="md-nav__link">
+    The Solid object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objects-availables-for-the-key-formula" class="md-nav__link">
+    Objects availables for the key Formula
+  </a>
+  
+    <nav class="md-nav" aria-label="Objects availables for the key Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-variables" class="md-nav__link">
+    System variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-functions" class="md-nav__link">
+    System functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-functions" class="md-nav__link">
+    Lua functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation and usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../targetfilesArduinoCPP/" class="md-nav__link">
+        The Arduino target files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../targetfilesGenericC/" class="md-nav__link">
+        The generic C target files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../theGUIApplication/" class="md-nav__link">
+        The GUI application
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-default-object" class="md-nav__link">
+    The Default object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-variable-object" class="md-nav__link">
+    The Variable object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-solid-object" class="md-nav__link">
+    The Solid object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objects-availables-for-the-key-formula" class="md-nav__link">
+    Objects availables for the key Formula
+  </a>
+  
+    <nav class="md-nav" aria-label="Objects availables for the key Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-variables" class="md-nav__link">
+    System variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-functions" class="md-nav__link">
+    System functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-functions" class="md-nav__link">
+    Lua functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="the-user-configuration-file-ucf">The User Configuration File (UCF)</h1>
+<p>UCF is in fact a Lua file. It is for sure not necessary to know the Lua language to create or manipulate the file, but respecting the Lua syntax is mandatory. Also, it is a good idea to have an editor with Lua syntax coloration, it helps to see any mistake, especially a missing bracket.</p>
+<p>There are three main objects in the file:</p>
+<p>1) The <strong>Default</strong> object:</p>
+<pre><code class="language-Lua">cfg:Default({
+    --parameters
+})
+</code></pre>
+<p>This object appears only once at the beginning of the file. Inside are the parameters for the communication and the gui layouting.</p>
+<p>2) The <strong>Variable</strong> object:</p>
+<pre><code class="language-Lua">cfg:Variable({
+    --parameters
+})
+</code></pre>
+<p>This object is used for representing one variable -or several variables in an array- that is reported by the target. The file can have many objects of this kind.</p>
+<p>3) The <strong>Solid</strong> object:</p>
+<pre><code class="language-Lua">cfg:Solid({
+    --parameters
+})
+</code></pre>
+<p>This object is used for representing a 3D shape in the 3D view. The file can have many objects of this kind.</p>
+<h2 id="syntax">Syntax</h2>
+<p>Each of the three objects has this special syntax:</p>
+<pre><code class="language-Lua">cfg:XXX({
+    --parameters
+})
+</code></pre>
+<p>Don't worry about this, that means only that Lua calls the embedded function XXX with parameters given between <code>{ }</code> (a table in Lua).</p>
+<p>All the parameters follow the simple syntax:</p>
+<p><code>Key = Value,</code> (may have spaces around the <code>=</code>)</p>
+<p>(notice the comma at the end of the line, this one is optional if the parameter is the last one)</p>
+<p>Depending of the Key, the Value can be a string, a boolean (<code>true</code> or <code>false</code>), a Lua function (see further), a Lua table (again something surrounded by <code>{ }</code>) or a simple numerical value.</p>
+<p>The file can have comments, all characters following <code>--</code> are ignored.</p>
+<h2 id="the-default-object">The <strong>Default</strong> object</h2>
+<p>This object is described here after with all its possible Keys, explanations are inside:</p>
+<pre><code class="language-Lua">cfg:Default({
+    ----------------------
+    -- Mandatory fields --
+    ----------------------    
+    Baudrate = 460800, -- Must match the baudrate used by the target
+
+    -- Commands from monitor to target;
+    SetValue = '#', -- Don't modify this
+    ReportValueOn = '?', -- Don't modify this
+    ReportValueOff = '!', -- Don't modify this
+
+    -- Messages from target to monitor
+    IReportValue =        ':', -- Don't modify this
+    IReportTextConsole =  '&gt;', -- Don't modify this
+
+    --Every sampleTimeHW a variable is sent
+    SampleTimeHW= 0.001, -- Must match the one of the target for correct
+                         -- timing display
+
+    --- GUI LAYOUTING
+    -- This Key is responsible for the variables displaying. The 
+    -- variables are referenced by their indexes (integer value). A tab 
+    -- (example Tab0) has a name and may contains several columns. 
+    -- The columns are all in the Columns Key.
+    GroupTabs= {  -- There are two groups of tabs
+        {-- group0
+            NoExpandX=true, -- Means strech horizontally the group to 
+                            -- its elements, optional, default=false
+            Tabs = { -- There are two tabs in the group
+                { -- Tab0
+                    TabName=&quot;Example 0&quot;,
+                    Columns= { -- There are two columns in the tab
+                        { 0, 9, },  -- This column has two rows
+                        { 10, }, -- This column has one row
+                    }
+                },
+                { -- Tab1
+                    TabName=&quot;Example 1&quot;,
+                    Columns= {
+                        { 20, 29, },
+                        { 30, },
+                    }
+                },
+        },
+        {-- group1
+            --NoExpandX=true,
+            Tabs = { -- There is one tab in the group
+                { -- Tab0
+                    TabName=&quot;Example 2&quot;,
+                    Columns= { -- There is one column in the tab
+                        { 100 },          
+                    }                 
+                },                              
+            }
+        }, 
+
+    ----------------------
+    -- Optional fields  --
+    ----------------------
+    -- Indianess of the target, usually little
+    -- Other value: 'big'
+    Endian = 'little',   -- default = 'little'
+    -- If 3D view requested, set this to true
+    Vue3D =  true,       -- default = false
+    -- If plot view requested, set to true
+    Plot =   true,       -- default = false
+})
+</code></pre>
+<h2 id="the-variable-object">The <strong>Variable</strong> object</h2>
+<p>At first, an example with the mandatory fields is presented here after:</p>
+<pre><code class="language-Lua">--------------- 
+cfg:Variable({
+    Name=&quot;My byte&quot;, -- Name that appears in front of the variable
+    Type=&quot;B&quot;,   -- Variable type, here a byte
+    Index=0,    -- Variable index in the target structure variables
+                -- Use also this index in the GroupTabs LAYOUT
+                -- for displaying
+})
+</code></pre>
+<p>On the GUI, it's rendered like this:</p>
+<p><img alt="main.jpg" src="../simpleVariable.jpg" /></p>
+<p>The variable type can be one of the following (excerpt of monitoring.h):</p>
+<pre><code class="language-c">typedef enum {
+    eComDataType_Float  = 'f', // 8 chars
+    eComDataType_U32    = 'W', // 8 chars
+    eComDataType_I32    = 'w', // 8 chars
+    eComDataType_U16    = 'I', // 4 chars
+    eComDataType_I16    = 'i', // 4 chars
+    eComDataType_U8     = 'B', // 2 chars
+    eComDataType_I8     = 'b', // 2 chars
+} eDataType_t;
+</code></pre>
+<p>With a special Key in the object, one can embed 8 bool type in the byte type.</p>
+<p>Another case with all the Key recognized:</p>
+<pre><code class="language-Lua">--------------- 
+cfg:Variable({
+    Name=&quot;My unsigned 16&quot;,
+    Type=&quot;I&quot;,
+    Index=0,
+
+    --- Optional Keys
+    -- The variable belong to the parameter group &quot;Base parameters&quot;
+    Parameter=&quot;Base parameters&quot;, -- if Parameter Key ommited, variable
+                                 -- has no parameter group 
+    --
+    HideData=false, -- if set to true, the variable isn't displayed,
+                    -- this is mainly used with the &quot;Button&quot; WidgetType
+                    -- (default = false)
+    Scroll=false,   -- used mainly if the variable is an array, put a 
+                    -- vertical scrolbar on the widget (default=false)
+    WidgetType=&quot;SliderH&quot;,   -- can be &quot;Normal&quot; (default), &quot;SliderH&quot;, 
+                            -- &quot;SliderV&quot; and &quot;Button&quot;
+    SliderMin = 0,      -- mandatory only if WidgetType=&quot;SliderH&quot; or
+                        -- &quot;SliderV&quot;: Minimum value of the slider
+    SliderMax = 1000,   -- mandatory only if WidgetType=&quot;SliderH&quot; or
+                        -- &quot;SliderV&quot;: Maximum value of the slider
+    Data = {    -- we will see this Key after
+        -- parameters
+    },
+})
+</code></pre>
+<p>The <strong>Data</strong> Key permits on a one hand to adjust the value parameter and on the other hand to define an array of values:</p>
+<pre><code class="language-Lua">--------------- 
+cfg:Variable({
+    Name=&quot;My float&quot;,
+    Type=&quot;f&quot;,
+    Index=0,
+
+    --- Optional Keys
+    Data = { 
+        {   -- all is optional
+            BoolsOnU8=false,-- use only with &quot;B&quot; type (default=false)
+            Value= 0.0,     -- a default value, if Key ommited Value = 0
+            CanEdit=true,   -- permit to the user to edit the value and 
+                            -- send it to the target when he press enter
+                            -- (default=false)
+            CanPlot=true,   -- when true, add this variable to the plot list
+                            --  of the plotter
+            Precision=5,    -- for &quot;f&quot; type variable, the number of decimal
+                            -- digits to display (default = 3)
+            SingleText = &quot;&quot;,-- in case of array of values, the text to
+                            -- display in front of each variable 
+                            -- (default = &quot;&quot;)
+        },
+    },
+})
+</code></pre>
+<p>Then for example if one wants to report a float variable with editing and plotting capability and with a display precision of 1, the Variable object is like this:</p>
+<pre><code class="language-Lua">--------------- 
+cfg:Variable({
+    Name=&quot;My float&quot;,
+    Type=&quot;f&quot;,
+    Index=10,
+
+    --- Optional Keys
+    Data = { 
+        { CanEdit=true, CanPlot=true, Precision=1 }, -- Data0, index 10
+    },
+})
+</code></pre>
+<p>It is possible to display several consecutive indexes in an array:</p>
+<pre><code class="language-Lua">--------------- 
+cfg:Variable({
+    Name=&quot;Arm 0 values&quot;,
+    Type=&quot;f&quot;,
+    Index=20, -- In a array, this index is the base index
+    Data= {
+        { SingleText = &quot;PID P value&quot; },  -- Data0, index 20
+        { SingleText = &quot;PID I value&quot; },  -- Data1, index 21
+        { SingleText = &quot;PID D value&quot; },
+        { SingleText = &quot;FeedF value&quot; },
+        { SingleText = &quot;Set   value&quot;, CanEdit=true },
+        { SingleText = &quot;PID Control&quot; },
+        { SingleText = &quot;Simul square&quot;, CanEdit=true },
+        { SingleText = &quot;Simul sq velo&quot;, CanEdit=true },
+        { SingleText = &quot;System filter&quot;, CanEdit=true }, -- Data8, index 28
+    }
+})
+</code></pre>
+<p>On the GUI, it's rendered like this:</p>
+<p><img alt="main.jpg" src="../array.jpg" /></p>
+<p>It's possible to display/edit bool values, for this the type must be "B" and the Key <strong>BoolsOnU8</strong> must be set to <code>true</code>:</p>
+<pre><code class="language-Lua">--------------- 
+cfg:Variable({
+    Name=&quot;Simulation&quot;,
+    Type=&quot;B&quot;,
+    Index=115,
+    Data= {
+        { -- Data0
+            BoolsOnU8=true, -- when set, tell to display the byte
+                            -- as 8 booleans (default=false)
+            --- Optional Key
+            BitsTexts = {
+                &quot;simulSquareCH0&quot;, &quot;simulSquareCH1&quot;, 
+                &quot;simulSquareCH2&quot;, &quot;simulSquareCH3&quot;,
+                &quot;simulSquareCH4&quot;, &quot;Not used&quot;,  
+                &quot;Not used&quot;, &quot;Not used&quot;
+            },
+            --- Optional Key
+            CanBitsEdits = {
+                true,true,true,true,
+                true,false,false,false
+            },
+        }
+    }
+})
+</code></pre>
+<p>On the GUI, it's rendered like this, notice the smalls buttons <strong>s</strong> (set) and <strong>c</strong> (clear) to set/clear the bit.</p>
+<p><img alt="main.jpg" src="../boolean.jpg" /></p>
+<h2 id="the-solid-object">The <strong>Solid</strong> object</h2>
+<p>The example below shows a Solid object, it is used to render any 3D shape in the 3D view</p>
+<p>The simplest Solid definition:</p>
+<pre><code class="language-Lua">---------------
+cfg:Solid({
+    -- Mandatory fields
+    Parent=&quot;Root&quot;,  -- see after
+    Name=&quot;Sol&quot;,     -- The name of the Solid
+    Body=&quot;Cube&quot;,    -- Shape rendered, can be &quot;Cube&quot;, &quot;Sphere&quot; 
+                    -- and &quot;Cylinder&quot;
+</code></pre>
+<p>A solid definition with all the Key accepted:</p>
+<pre><code class="language-Lua">---------------
+cfg:Solid({
+    -- Mandatory fields
+    Parent=&quot;Root&quot;,  -- The string value &quot;Root&quot; is reserved to the system
+                    -- It tells that this Solid is connected to the 3D 
+                    -- scene origin.
+
+    Name=&quot;Sol&quot;,     -- The name of the Solid 
+    Body=&quot;Cube&quot;,    -- Shape rendered, can be &quot;Cube&quot;, &quot;Sphere&quot; 
+                    -- and &quot;Cylinder&quot;
+
+    -- Optional fields
+    StartPosition={ 0, 0.5, -0.2 }, -- Offset position in the scene {x,y,z}
+                                    -- default: {0,0,0}
+    StartRotation={ 0, 90, 0 },     -- Offset rotation in the scene {x,y,z}
+                                    -- default: {0,0,0}
+    CubeSize = { 5, 0.1, 10 },  -- Cube dimension if Body=&quot;Cube&quot;
+                                -- default: {1,1,1}
+    CylinderTopRadius= 1,       -- Cylinder dimension if Body=&quot;Cylinder&quot;
+                                -- default: {1,1,1}
+    CylinderBottomRadius= 1,    -- Cylinder dimension if Body=&quot;Cylinder&quot;
+                                -- default: {1,1,1}
+    CylinderHeight= 1,          -- Cylinder dimension if Body=&quot;Cylinder&quot;
+                                -- default: {1,1,1}
+    SphereRadius= 1,            -- Sphere dimension if Body=&quot;Sphere&quot;
+                                -- default: {1,1,1}
+    SphereHeight= 1,            -- Sphere dimension if Body=&quot;Sphere&quot;
+                                -- default: {1,1,1}                                
+    MoveRotationSmooth=true,    -- Enable smooth rotation, default=false
+    MovePositionSmooth=true,    -- Enable smooth translation, default=false
+    Color={ 0.4, 0.3, 0.2 },    -- Color of the shape {red, green, blue} 
+                                -- values are from 0.0 to 1.0
+                                -- default = {1,1,1}
+    Formula =   -- If omitted, no Formula, if present must respect
+                -- this syntax. self is an object given by the system
+                -- for the user to manipulate variables
+        function(self)
+            --
+        end, -- don't forget the comma if there is another key after Formula     
+})
+
+A solid definition with a Formula key:
+
+cfg:Solid({
+    -- Mandatory fields
+    Parent=&quot;Sol&quot;,   -- Notice that this solid is referenced to &quot;Sol&quot; Solid
+                    -- defined before. Then its position and rotation is
+                    -- referenced to the &quot;Sol&quot; origin
+
+    Name=&quot;Bras0&quot;,
+    Body=&quot;Cube&quot;,
+
+    -- Optional fields
+    StartPosition={ 0, 0.5, -0.2 },
+    StartRotation={ 0, 45, 0 },
+    Color={ 0.4, 0.3, 0.3 },
+    MoveRotationSmooth=true,
+    Formula = 
+        function(self)
+            self.R.y = 90 - self:GetVariable(9)
+            -- Here the Solid rotation around the y axis is related
+            -- with the variable value of index 9
+        end,       
+})
+</code></pre>
+<h2 id="objects-availables-for-the-key-formula">Objects availables for the key Formula</h2>
+<h3 id="system-variables">System variables</h3>
+<p><code>P</code>: current positions of the solid, accessed with <code>self.P.x</code>, <code>self.P.y</code> and <code>self.P.z</code></p>
+<p><code>R</code>: current rotations of the solid, accessed with <code>self.R.x</code>, <code>self.R.y</code> and <code>self.R.z</code></p>
+<h3 id="system-functions">System functions</h3>
+<p><code>GetVariable(index)</code>: access the variable value of index <code>index</code></p>
+<p><code>GetVariable(index, bitindex)</code>: access the variable value of index <code>index</code> and return the nth <code>bitindex</code> bit value as a number (<code>0</code> or <code>1</code>)</p>
+<h3 id="lua-functions">Lua functions</h3>
+<p>All Lua functions are available</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Welcome to papyMonitor" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Welcome to papyMonitor
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../installation/" class="md-footer__link md-footer__link--next" aria-label="Next: Installation and usage" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Installation and usage
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>
