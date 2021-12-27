@@ -24,3 +24,7 @@ The protocol used over the serial port is choosen as plain ASCII text. Each line
 - **The Arduino target files** describes the Arduino library and how to use it
 - **The generic C target files** describes the general C library and how to use it
 - **The GUI application** explains how to use the GUI application
+
+## Discussions
+
+Feel free to post comments on [Discussions page](https://github.com/papyMonitor/papyMonitor-gui/discussions)
