@@ -211,9 +211,10 @@ cfg:Variable({
             BoolsOnU8=false,-- use only with "B" type (default=false)
             Value= 0.0,     -- a default value, if Key ommited Value = 0
             CanEdit=true,   -- permit to the user to edit the value and 
-                            -- send it when he press enter (default=false)
-            CanPlot=true,   -- add this variable to the plot list of the
-                            -- plotter
+                            -- send it to the target when he press enter
+                            -- (default=false)
+            CanPlot=true,   -- when true, add this variable to the plot list
+                            --  of the plotter
             Precision=5,    -- for "f" type variable, the number of decimal
                             -- digits to display (default = 3)
             SingleText = "",-- in case of array of values, the text to
@@ -295,13 +296,13 @@ cfg:Variable({
 })
 ```
 
-On the GUI, it's rendered like this:
+On the GUI, it's rendered like this, notice the smalls buttons **s** (set) and **c** (clear) to set/clear the bit.
 
 ![main.jpg](boolean.jpg)
 
 ## The **Solid** object
 
-The example below shows three Solid objects, these are used to render any 3D shape in the 3D view
+The example below shows a Solid object, it is used to render any 3D shape in the 3D view
 
 The simplest Solid definition:
 
@@ -311,7 +312,8 @@ cfg:Solid({
     -- Mandatory fields
     Parent="Root",  -- see after
     Name="Sol",     -- The name of the Solid
-    Body="arm.glb", -- filename (path relative to the UCF location)
+    Body="Cube",    -- Shape rendered, can be "Cube", "Sphere" 
+                    -- and "Cylinder"
 ```
 
 A solid definition with all the Key accepted:
@@ -321,14 +323,12 @@ A solid definition with all the Key accepted:
 cfg:Solid({
     -- Mandatory fields
     Parent="Root",  -- The string value "Root" is reserved to the system
-                    -- It tells that this Solid is connected to other Solid
-                    -- It's coordinates are relative to the 3D scene origin
+                    -- It tells that this Solid is connected to the 3D 
+                    -- scene origin.
 
     Name="Sol",     -- The name of the Solid 
-    Body="Cube",    -- Can be "Cube", "Cylinder" or a filename (path 
-                    -- relative to the UCF location)
-                    -- If it's a filename, the extension must be .glb
-                    -- (standart OpenGL Binary)
+    Body="Cube",    -- Shape rendered, can be "Cube", "Sphere" 
+                    -- and "Cylinder"
     
     -- Optional fields
     StartPosition={ 0, 0.5, -0.2 }, -- Offset position in the scene {x,y,z}
@@ -343,6 +343,10 @@ cfg:Solid({
                                 -- default: {1,1,1}
     CylinderHeight= 1,          -- Cylinder dimension if Body="Cylinder"
                                 -- default: {1,1,1}
+    SphereRadius= 1,            -- Sphere dimension if Body="Sphere"
+                                -- default: {1,1,1}
+    SphereHeight= 1,            -- Sphere dimension if Body="Sphere"
+                                -- default: {1,1,1}                                
     MoveRotationSmooth=true,    -- Enable smooth rotation, default=false
     MovePositionSmooth=true,    -- Enable smooth translation, default=false
     Color={ 0.4, 0.3, 0.2 },    -- Color of the shape {red, green, blue} 
@@ -360,14 +364,16 @@ A solid definition with a Formula key:
 
 cfg:Solid({
     -- Mandatory fields
-    Parent="Base",
+    Parent="Sol",   -- Notice that this solid is referenced to "Sol" Solid
+                    -- defined before. Then its position and rotation is
+                    -- referenced to the "Sol" origin
 
     Name="Bras0",
-    Body="bras0.glb",
+    Body="Cube",
     
     -- Optional fields
     StartPosition={ 0, 0.5, -0.2 },
-    StartRotation={ 0, 90, 0 },
+    StartRotation={ 0, 45, 0 },
     Color={ 0.4, 0.3, 0.3 },
     MoveRotationSmooth=true,
     Formula = 
@@ -383,7 +389,7 @@ cfg:Solid({
 
 ### System variables
 
-`P`: current coordinates of the solid, accessed with `self.P.x`, `self.P.y` and `self.P.z`
+`P`: current positions of the solid, accessed with `self.P.x`, `self.P.y` and `self.P.z`
 
 `R`: current rotations of the solid, accessed with `self.R.x`, `self.R.y` and `self.R.z`
 
